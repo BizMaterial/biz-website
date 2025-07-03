@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BIZ Material de Construção</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f2f2f2;
       color: #333;
     }
@@ -30,6 +35,7 @@
       list-style: none;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 20px;
       padding: 0;
       margin-top: 10px;
@@ -39,22 +45,25 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
-      padding: 8px 16px;
+      padding: 10px 20px;
       border-radius: 30px;
-      background-color: #ffffff10;
-      transition: background-color 0.3s ease;
+      background-color: #ffffff20;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
     nav ul li a:hover {
-      background-color: #ffffff30;
+      background-color: white;
+      color: #892c32;
+      border: 2px solid #892c32;
     }
 
     section {
       padding: 30px;
       background-color: #fff;
       margin: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     h1, h2 {
@@ -62,39 +71,54 @@
     }
 
     .whatsapp-button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       background-color: #25D366;
       color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
+      padding: 12px 24px;
+      border-radius: 30px;
       text-decoration: none;
-      margin-top: 10px;
+      margin-top: 15px;
       font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #1ebe57;
     }
 
     form {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      max-width: 400px;
+      max-width: 500px;
     }
 
     input[type="text"],
     input[type="tel"],
-    input[type="file"] {
-      padding: 8px;
+    textarea {
+      padding: 10px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
     }
 
     button[type="submit"] {
       background-color: #892c32;
       color: white;
-      padding: 10px;
+      padding: 12px;
       border: none;
-      border-radius: 25px;
+      border-radius: 30px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
     }
 
     button[type="submit"]:hover {
@@ -107,6 +131,21 @@
       text-align: center;
       padding: 15px;
       margin-top: 30px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      animation: fadeInUp 0.6s ease;
     }
 
     @media (max-width: 600px) {
@@ -125,16 +164,12 @@
 
         const nome = document.getElementById('nome').value;
         const telefone = document.getElementById('telefone').value;
-        const arquivo = document.getElementById('arquivo').files[0];
+        const descricao = document.getElementById('descricao').value;
 
-        const mensagem = `Olá, vim pelo site e quero realizar um orçmento, me chamo ${nome} e o meu contato é esse telefone: ${telefone}.`;
+        const mensagem = `Orçamento solicitado por: ${nome}%0AContato: ${telefone}%0ADescrição do orçamento:%0A${descricao}`;
 
-        if (arquivo) {
-          alert("Infelizmente não é possível enviar arquivos diretamente pelo WhatsApp. Envie seu orçamento e entraremos em contato para solicitar o arquivo por mensagem.");
-        }
-
-        window.open(`https://wa.me/5584986239129?text=${encodeURIComponent(mensagem)}`, '_blank');
-        window.open(`https://wa.me/5584994726755?text=${encodeURIComponent(mensagem)}`, '_blank');
+        window.open(`https://wa.me/5584986239129?text=${mensagem}`, '_blank');
+        window.open(`https://wa.me/5584994726755?text=${mensagem}`, '_blank');
 
         alert('Orçamento enviado! Entraremos em contato em breve.');
         form.reset();
@@ -148,11 +183,11 @@
     <h1>BIZ MATERIAL DE CONSTRUÇÃO</h1>
     <nav>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#sobre">Sobre a Empresa</a></li>
-        <li><a href="#contatos">Contatos</a></li>
-        <li><a href="#fornecedores">Fornecedores</a></li>
-        <li><a href="#localizacao">Localização</a></li>
+        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
+        <li><a href="#contatos"><i class="fas fa-phone"></i> Contatos</a></li>
+        <li><a href="#fornecedores"><i class="fas fa-box"></i> Fornecedores</a></li>
+        <li><a href="#localizacao"><i class="fas fa-map-marker-alt"></i> Localização</a></li>
       </ul>
     </nav>
   </header>
@@ -160,7 +195,9 @@
   <section id="home">
     <h2>Transformando materiais em realizações</h2>
     <p>Na BIZ, cada cliente é parte da nossa história. Estamos aqui para construir, reformar e realizar sonhos com você!</p>
-    <a class="whatsapp-button" href="https://wa.me/5584986239129" target="_blank">Fale conosco no WhatsApp</a>
+    <a class="whatsapp-button" href="https://wa.me/5584986239129" target="_blank">
+      <i class="fab fa-whatsapp"></i> Fale conosco no WhatsApp
+    </a>
   </section>
 
   <section id="sobre">
@@ -173,10 +210,10 @@
   <section id="contatos">
     <h2>Fale com a gente</h2>
     <ul>
-      <li>WhatsApp: <a href="https://wa.me/5584986239129" target="_blank">(84) 9 8623-9129</a></li>
-      <li>WhatsApp: <a href="https://wa.me/5584994726755" target="_blank">(84) 9 9472-6755</a></li>
-      <li>Instagram: <a href="https://instagram.com/bizmaterialdeconstrucao" target="_blank">@bizmaterialdeconstrucao</a></li>
-      <li>Email: <a href="mailto:netodabiz@hotmail.com">netodabiz@hotmail.com</a></li>
+      <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/5584986239129" target="_blank">(84) 9 8623-9129</a></li>
+      <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/5584994726755" target="_blank">(84) 9 9472-6755</a></li>
+      <li><i class="fab fa-instagram"></i> <a href="https://instagram.com/bizmaterialdeconstrucao" target="_blank">@bizmaterialdeconstrucao</a></li>
+      <li><i class="fas fa-envelope"></i> <a href="mailto:netodabiz@hotmail.com">netodabiz@hotmail.com</a></li>
     </ul>
   </section>
 
@@ -199,10 +236,10 @@
       <label for="telefone">Telefone para contato:</label>
       <input type="tel" id="telefone" name="telefone" required>
 
-      <label for="arquivo">Envie imagem ou PDF do orçamento:</label>
-      <input type="file" id="arquivo" name="arquivo" accept=".pdf,image/*" required>
+      <label for="descricao">Descreva seu orçamento:</label>
+      <textarea id="descricao" name="descricao" placeholder="Ex: 10 sacos de cimento, 5 metros de areia, 1 carrinho de mão..." required></textarea>
 
-      <button type="submit">Enviar Orçamento</button>
+      <button type="submit"><i class="fas fa-paper-plane"></i> Enviar Orçamento</button>
     </form>
   </section>
 
